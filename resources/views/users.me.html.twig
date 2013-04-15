@@ -1,0 +1,67 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% if app.session.get('Xing.userID') != false %}
+        <div class="page-header">
+            <h1>What's in my profile?</h1>
+        </div>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="results">
+    <thead>
+    <tr>
+        <td>Field</td>
+        <td>Value</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="gradeA">
+        <td>id</td>
+        <td>{{ usersMe.id }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>first_name</td>
+        <td>{{ usersMe.first_name }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>last_name</td>
+        <td>{{ usersMe.last_name }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>display_name</td>
+        <td>{{ usersMe.display_name }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>page_name</td>
+        <td>{{ usersMe.page_name }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>permalink</td>
+        <td><a href="{{ usersMe.permalink }}" target="_new">{{ usersMe.permalink }}</a></td>
+    </tr>
+    <tr class="gradeA">
+        <td>gender</td>
+        <td>{{ usersMe.gender }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>birth_date</td>
+        <td>{{ usersMe.birth_date.day }}.{{ usersMe.birth_date.month }}.{{ usersMe.birth_date.year }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>active_email</td>
+        <td><a href="mailto:{{ usersMe.active_email }}">{{ usersMe.active_email }}</a></td>
+    </tr>
+    <tr class="gradeA">
+        <td>time_zone.name</td>
+        <td>{{ usersMe.time_zone.name }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>time_zone.utc_offset</td>
+        <td>{{ usersMe.time_zone.utc_offset }}</td>
+    </tr>
+    <tr class="gradeA">
+        <td>organisation_member</td>
+        <td>{{ usersMe.organisation_member }}</td>
+    </tr>
+    </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

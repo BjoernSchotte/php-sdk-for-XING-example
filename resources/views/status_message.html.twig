@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Post Status Message</h1>
+    </div>
+    {% if app.session.get('Xing.userID') != false %}
+    <p>
+        Just post your status message here ...
+    </p>
+            <form accept-charset="UTF-8" action="/status_message" method="POST">
+                <textarea class="span9" id="new_message" name="new_message"
+                          placeholder="Type in your message" rows="5"></textarea>
+                <button class="btn btn-info" type="submit">Post New Message</button>
+            </form>
+    {% endif %}
+    {% if post_response is defined %}
+        <div class="alert alert-info">
+            {{ statusCode }}: {{ post_response }}
+        </div>
+    {% endif %}
+{% endblock %}

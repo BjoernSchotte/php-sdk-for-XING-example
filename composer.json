@@ -1,0 +1,13 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "/home/bjoern/Code/php-sdk-for-Xing"
+        }
+    ],
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "bjoernschotte/php-sdk-for-XING": "dev-master"
+    }
+}

@@ -1,0 +1,84 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Find users</h1>
+    </div>
+    {% if app.session.get('Xing.userID') != false %}
+    <p>
+    Find users by ID:
+    </p>
+            <form accept-charset="UTF-8" action="/users" method="POST">
+                <input class="span9" id="id" name="id" placeholder="Type in ID to find">
+                <button class="btn btn-info" type="submit">Find users</button>
+            </form>
+    {% endif %}
+    {% if statusCode is defined %}
+        <div class="alert alert-info">
+            HTTP Status Code: {{ statusCode }}<br/>
+            Found {{ total }} item(s).<br/><br/>
+            {% for item in items %}
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="results">
+                    <thead>
+                    <tr>
+                        <td>Field</td>
+                        <td>Value</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="gradeA">
+                        <td>id</td>
+                        <td>{{ item.id }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>first_name</td>
+                        <td>{{ item.first_name }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>last_name</td>
+                        <td>{{ item.last_name }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>display_name</td>
+                        <td>{{ item.display_name }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>page_name</td>
+                        <td>{{ item.page_name }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>permalink</td>
+                        <td><a href="{{ item.permalink }}" target="_new">{{ item.permalink }}</a></td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>gender</td>
+                        <td>{{ item.gender }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>birth_date</td>
+                        <td>{{ item.birth_date.day }}.{{ item.birth_date.month }}.{{ item.birth_date.year }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>active_email</td>
+                        <td><a href="mailto:{{ item.active_email }}">{{ item.active_email }}</a></td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>time_zone.name</td>
+                        <td>{{ item.time_zone.name }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>time_zone.utc_offset</td>
+                        <td>{{ item.time_zone.utc_offset }}</td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>organisation_member</td>
+                        <td>{{ item.organisation_member }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            <br/>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

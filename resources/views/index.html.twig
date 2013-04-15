@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'homepage' %}
+
+{% block content %}
+    <div class="hero-unit">
+    {% if app.session.get('Xing.userID') == false %}
+        <h1>Hello</h1>
+        You are not logged in. Please <a href="/login">login</a>.
+    {% else %}
+        <h1>Hello {{ app.session.get('Xing.id_card').display_name }}!</h1>
+        <p>
+            You successfully logged in. Now you can play around with the API functions on the left navigation.
+        </p>
+    {% endif %}
+    </div>
+{% endblock %}

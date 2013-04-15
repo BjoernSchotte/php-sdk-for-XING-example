@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Find users by E-Mails</h1>
+    </div>
+    {% if app.session.get('Xing.userID') != false %}
+    <p>
+    Find Xing Users by E-Mail addresses:
+    </p>
+            <form accept-charset="UTF-8" action="/find_by_emails" method="POST">
+                <input class="span9" id="emails" name="emails" placeholder="Type in e-mails to find">
+                <button class="btn btn-info" type="submit">Find users</button>
+            </form>
+    {% endif %}
+    {% if statusCode is defined %}
+        <div class="alert alert-info">
+            HTTP Status Code: {{ statusCode }}<br/>
+            Found {{ total }} item(s).<br/><br/>
+            {% for item in items %}
+            E-Mail: {% if item.email is defined %}{{ item.email }}{% else %}NULL{% endif %}<br/>
+            UserID: {% if item.user.id is defined %}{{ item.user.id }}{% else %}NULL{% endif %}<br/>
+            <br/>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
